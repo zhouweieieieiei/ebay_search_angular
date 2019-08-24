@@ -1,0 +1,15 @@
+<app-inputform></app-inputform>
+<div align="center" style="margin-top: 25px;">
+  <button type="button" [ngClass]="reswishcontrolService.tab == 'Results'?'selectedtab btn':'unselectedtab btn'" (click) = "reswishcontrolService.updatetab('Results'); slidingcontrolService.isLeftVisible = false">
+    Results
+  </button>
+  <button type="button" [ngClass]="reswishcontrolService.tab == 'Wish List'?'selectedtab btn':'unselectedtab btn'" (click) = "reswishcontrolService.updatetab('Wish List'); slidingcontrolService.isLeftVisible = false">
+    Wish List
+  </button>
+</div>
+<app-progressbar *ngIf="progressbarService.progressbarshow"></app-progressbar>
+<app-slidingtable [activePane]="slidingcontrolService.isLeftVisible ? 'left' : 'right'">
+  <div leftPane><app-detailtable></app-detailtable></div>
+  <div *ngIf="reswishcontrolService.tab == 'Results'" rightPane><app-resulttable></app-resulttable></div>
+  <div *ngIf="reswishcontrolService.tab == 'Wish List'" rightPane><app-wishlist></app-wishlist></div>
+</app-slidingtable>

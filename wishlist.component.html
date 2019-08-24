@@ -1,0 +1,44 @@
+<div id="norecord" *ngIf="wishlistService.applynum() == 0" class="alert alert-warning" role="alert">
+  No Records.
+</div>
+<div *ngIf="wishlistService.applynum()>0" id="container">
+  <div id="buttoncontainer" align="right">
+    <button type="button" class="btn btn-light" [disabled]="!detailService.item" (click) = "slidingcontrolService.changevisiblestate(true)">
+        Detail >
+    </button>
+  </div>
+  <div id="tablecontainer">
+  <table class="table table-striped table-dark">
+  	<tr>
+  		<th>#</th>
+  		<th>Image</th>
+  		<th>Title</th>
+  		<th>Price</th>
+  		<th>Shipping</th>
+  		<th>Seller</th>
+  		<th>Wish List</th>
+  	</tr>
+  	<tr *ngFor="let item of arr(wishlistService.applynum()); index as i" (mouseover)="hovering(wishlistService.applyitem()[i])" (mouseout)="unhovering()" [ngStyle]="{'background-color': wishlistService.applyitem()[i].itemId[0] == hoveringitem ?'#565656':wishlistService.applyitem()[i].itemId[0] == selecteditem?'#868686':''}">
+    		<td>{{i+1}}</td>
+    		<td *ngIf="imagejudge(wishlistService.applyitem()[i])"><img src={{wishlistService.applyitem()[i].galleryURL[0]}} style="width: 100px; height: 100px;"></td>
+    		<td *ngIf="!imagejudge(wishlistService.applyitem()[i])">N/A</td>
+    		<td>
+          <span (click) = "requestdetail(wishlistService.applyitem()[i])" style="color: dodgerblue;" matTooltip={{wishlistService.applyitem()[i].title[0]}}>{{titlejudge(wishlistService.applyitem()[i])}}</span>
+        </td>
+    		<td>{{pricejudge(wishlistService.applyitem()[i])}}</td>
+    		<td>{{shippingjudge(wishlistService.applyitem()[i])}}</td>
+    		<td>{{sellerjudge(wishlistService.applyitem()[i])}}</td>
+    		<td>
+          <button type="button" class="btn btn-light" (click)="wishlistService.deleteitem(wishlistService.applyitem()[i])">
+            <i class="material-icons" style="color: yellow">remove_shopping_cart</i>
+          </button>
+    		</td>
+  	</tr>
+    <tr>
+    <th colspan="5"></th>
+    <th>Total Shipping</th>
+    <th>${{wishlistService.applyprice()}}</th>
+  </tr>
+  </table>
+  </div>
+</div>

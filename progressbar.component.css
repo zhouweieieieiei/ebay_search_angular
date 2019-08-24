@@ -1,0 +1,10 @@
+.progress{
+	width: 85%;
+	margin: 10px auto;
+}
+
+@media (max-width: 576px){
+	.progress{
+		width: 100%;
+	}
+}

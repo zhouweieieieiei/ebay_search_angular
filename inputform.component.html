@@ -1,0 +1,102 @@
+<form id = "input_form" class="jumbotron bg-dark text-white">
+  <div id = "title">Product Search</div>
+  <div class="form-group row form_content">
+    <div class="col-sm-2" style="padding-left: 0;">
+      Keyword<span class="star_sign">*</span>
+    </div>
+    <div class="col-sm-6 class1">
+      <input type="text" name="keyword" [ngClass] = "keywordvalid?'form-control':'form-control is-invalid'" id = "keyword" [(ngModel)] = "search_info.keyword" placeholder="Enter Product Name (eg. iPhone 8)" (blur) = "keywordcheck()">
+      <div>
+        <small *ngIf="!keywordvalid" class="text-danger" >
+          Please enter a keyword.
+        </small>
+      </div>
+    </div>  
+  </div>
+  <div class="form-group row form_content">
+  	<div class="col-sm-2" style="padding-left: 0;">
+      Category
+    </div>
+    <div class="col-sm-2 class1">
+	    <select class="form-control" name="category" id = "category" [(ngModel)] = "search_info.category">
+	    	<option value = "All Categories" selected="selected">All Categories</option>
+	    	<option value = "Art">Art</option>
+	    	<option value = "Baby">Baby</option>
+	    	<option value = "Books">Books</option>
+	    	<option value = "Clothing, Shoes & Accessories">Clothing, Shoes & Accessories</option>
+	    	<option value = "Computers/Tablets & Networking">Computers/Tablets & Networking</option>
+	    	<option value = "Health & Beauty">Health & Beauty</option>
+	    	<option value = "Music">Music</option>
+	    	<option value = "Video Games & Consoles">Video Games & Consoles</option>
+	    </select>
+	</div>
+  </div>
+  <div class="form-group row form_content">
+  	<div class="col-sm-2" style="padding-left: 0;">
+      Condition
+    </div>
+    <div class="col-sm-4 class1">
+    	<input type="checkbox" name="new" style="margin-right: 5px;" [(ngModel)] = "search_info.new">
+    	<span style="margin-right: 5px;">New</span>
+    	<input type="checkbox" name="used" style="margin-right: 5px;" [(ngModel)] = "search_info.used">
+    	<span style="margin-right: 5px;">Used</span>
+    	<input type="checkbox" name="unspecified" style="margin-right: 5px;" [(ngModel)] = "search_info.unspecified">
+    	<span style="margin-right: 5px;">Unspecified</span>
+    </div>
+  </div>
+  <div class="form-group row form_content">
+  	<div class="col-sm-2" style="padding-left: 0;">
+      Shipping Options
+    </div>
+    <div class="col-sm-4 class1">
+    	<input type="checkbox" name="local_pickup" style="margin-right: 5px;" [(ngModel)] = "search_info.local_pickup">
+    	<span style="margin-right: 5px;">Local Pickup</span>
+    	<input type="checkbox" name="free_shipping" style="margin-right: 5px;" [(ngModel)] = "search_info.free_shipping">
+    	<span style="margin-right: 5px;">Free Shipping</span>
+    </div>
+  </div>
+  <div class="form-group row form_content">
+    <div class="col-sm-2" style="padding-left: 0;">
+      Distance (Miles)
+    </div>
+    <div class="col-sm-2 class1">
+      <input type="text" name="distance" class="form-control" id = "distance" [(ngModel)] = "search_info.distance" placeholder="10"> 
+    </div>  
+  </div>
+  <div class="form-group row form_content">
+    <div class="col-sm-2" style="padding-left: 0;">
+      From<span class="star_sign">*</span>
+    </div>
+    <div class="col-sm-6 class1">
+    	<div style="margin-bottom: 5px;">
+	    	<input name='current_location' type="radio" value = "current" [(ngModel)]="search_info.location" style="margin-right: 5px;" (click) = "select_current()">
+	    	<span>Current Location</span>
+    	</div>
+    	<div style="margin-bottom: 5px;">
+	    	<input name='other_location' type="radio" value = "other" [(ngModel)]="search_info.location" style="margin-right: 5px;" (click) = "select_other()">
+	    	<span style="margin-right: 5px;">Other. Please specify zip code:</span>
+    	</div>
+        <mat-form-field [formGroup]="myform" style = "width: 100%; margin-bottom: -2.09375em; top: -0.84375em;">
+    	  <input id="zipcodeinput" type="text" name="zipcode" [ngClass] = "zipcodevalid?'form-control sb':'form-control sb zipcodeinvalid is-invalid'" [(ngModel)] = "search_info.zipcode" (input)="zipcodechange()" matInput formControlName="myControl" [matAutocomplete]="auto" (blur) = "zipcodecheck()">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div>
+        <small *ngIf="!zipcodevalid" class="text-danger" style="top: -0.84375em;">
+          Please enter a zipcode.
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="form_content">
+    <button type="button" id="searchButton" class="btn btn-light" [disabled] = "!search_info.keyword||search_info.keyword.trim().length == 0||zipcodecontent()" (click) = "searchitem()">
+      <i class="material-icons">search</i>Search
+    </button>
+    <button type="button" id="clearButton" class="btn btn-light" (click) = "clear()">
+      <i class="material-icons">clear_all</i>Clear
+    </button>
+  </div>
+</form>

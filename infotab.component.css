@@ -1,0 +1,27 @@
+.field{
+	width: 45%;
+}
+
+.carousel-control-prev-icon,.carousel-control-next-icon{
+	background-color: black;
+}
+
+@media (max-width: 576px){
+	.field{
+		width: 55%; 
+	}
+}
+
+.carousel-item{
+	border: 10px solid black;
+	border-radius: 10px;
+	padding: 4px 4px 4px 4px;
+}
+
+.carousel{
+	padding: 15px 15px 15px 15px;
+}
+
+.mycarousel-img{
+	width: 100%;
+}

@@ -1,0 +1,11 @@
+.photoitem{
+	border: 8px solid black;
+	margin-top: 3px;
+	margin-bottom: 3px; 
+	width: 100%;
+}
+
+.col-sm-4{
+	padding-left: 3px;
+	padding-right: 3px;
+}

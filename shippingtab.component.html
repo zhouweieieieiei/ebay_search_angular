@@ -1,0 +1,43 @@
+<div *ngIf="detailService.messages!=''">
+	<table class="table table-striped table-dark">
+		<tr *ngIf="shippingcostjudge(detailService.item)">
+			<td class="field">Shipping Cost</td>
+			<td>{{shippingcostnum(detailService.item)}}</td>
+		</tr>
+		<tr *ngIf="shippinglocationjudge(detailService.item)">
+			<td class="field">Shipping Locations</td>
+			<td>{{detailService.item.shippingInfo[0].shipToLocations.join()}}</td>
+		</tr>
+		<tr *ngIf="shippinghandlingtimejudge(detailService.item)">
+			<td class="field">Handling Time</td>
+			<td>{{shippinghandlingtimenum(detailService.item)}}</td>
+		</tr>
+		<tr *ngIf="shippingexpeditedshippingjudge(detailService.item)">
+			<td class="field">Expedited Shipping</td>
+			<td *ngIf = "detailService.item.shippingInfo[0].expeditedShipping == 'true'">
+				<i class="material-icons" style="color: green">done</i>
+			</td>
+			<td *ngIf = "detailService.item.shippingInfo[0].expeditedShipping == 'false'">
+				<i class="material-icons" style="color: red">clear</i>
+			</td>
+		</tr>
+		<tr *ngIf="shippingonedayshippingjudge(detailService.item)">
+			<td class="field">One Day Shipping</td>
+			<td *ngIf = "detailService.item.shippingInfo[0].oneDayShippingAvailable == 'true'">
+				<i class="material-icons" style="color: green">done</i>
+			</td>
+			<td *ngIf = "detailService.item.shippingInfo[0].oneDayShippingAvailable == 'false'">
+				<i class="material-icons" style="color: red">clear</i>
+			</td>
+		</tr>
+		<tr *ngIf="shippingreturnacceptedjudge(detailService.item)">
+			<td class="field">Return Accepted</td>
+			<td *ngIf = "detailService.item.returnsAccepted[0] == 'true'">
+				<i class="material-icons" style="color: green">done</i>
+			</td>
+			<td *ngIf = "detailService.item.returnsAccepted[0] == 'false'">
+				<i class="material-icons" style="color: red">clear</i>
+			</td>
+		</tr>
+	</table>
+</div>

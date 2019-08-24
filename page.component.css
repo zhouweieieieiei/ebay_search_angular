@@ -1,0 +1,18 @@
+.underline:hover{
+	text-decoration:underline;
+	background-color: lightgrey;
+}
+
+.selectedpage{
+	background-color: black;
+	color: white;
+}
+
+.unselectedpage:hover{
+	text-decoration:underline;
+	background-color: lightgrey;
+}
+
+.selectedpage:hover{
+	text-decoration:underline;
+}

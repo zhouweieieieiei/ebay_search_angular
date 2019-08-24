@@ -1,0 +1,11 @@
+<div style="text-align: center;">
+	<button type="button" [ngClass]="pageService.curpage == 1?'btn':'btn underline'" [disabled] = "pageService.curpage == 1" (click)="pageService.updatecurpage(pageService.curpage-1)">
+		&laquo; Previous
+	</button>
+	<ng-container *ngFor="let pageindex of arr(pageService.pagenum); index as i">
+		<button type="button" [ngClass]="pageService.curpage == i+1?'selectedpage btn':'unselectedpage btn'" (click)="pageService.updatecurpage(i+1)">{{i+1}}</button>
+	</ng-container>
+	<button type="button" [ngClass]="pageService.curpage >= pageService.pagenum?'btn':'btn underline'" [disabled] = "pageService.curpage >= pageService.pagenum" (click)="pageService.updatecurpage(pageService.curpage+1)">
+		Next &raquo;
+	</button>
+</div>

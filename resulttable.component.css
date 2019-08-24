@@ -1,0 +1,35 @@
+#tablecontainer{
+	width: 78%; 
+	margin: auto;
+	overflow: scroll;
+	background-color: #212529;
+}
+
+#buttoncontainer{
+	width: 91%; 
+	margin-bottom: 30px;
+}
+
+#norecord{
+	width: 78%; 
+	margin: 10px auto;
+}
+
+#detailbutton{
+	border: 0;
+}
+
+@media (max-width: 576px){
+	.table{
+		margin: auto;
+	}
+	#tablecontainer{
+		width: 95%;
+	}
+	#buttoncontainer{
+		width: 97%; 
+	}
+	#norecord{
+		width: 95%; 
+	}
+}

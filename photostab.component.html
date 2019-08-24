@@ -1,0 +1,35 @@
+<div id="norecord" *ngIf="!photoService.photos" class="alert alert-warning" role="alert">
+  No Records.
+</div>
+<div class="row" *ngIf="photoService.photos">
+	<div class="col-sm-4">
+		<div *ngIf="photoService.photos.length>0">
+			<a href={{photoService.photos[0].link}} target="_blank"><img src={{photoService.photos[0].link}} class="photoitem"></a>
+		</div>
+		<div *ngIf="photoService.photos.length>3">
+			<a href={{photoService.photos[3].link}} target="_blank"><img src={{photoService.photos[3].link}} class="photoitem"></a>
+		</div>
+    </div>
+    <div class="col-sm-4">
+    	<div *ngIf="photoService.photos.length>1">
+    		<a href={{photoService.photos[1].link}} target="_blank"><img src={{photoService.photos[1].link}} class="photoitem"></a>
+    	</div>
+    	<div *ngIf="photoService.photos.length>4">
+    		<a href={{photoService.photos[4].link}} target="_blank"><img src={{photoService.photos[4].link}} class="photoitem"></a>
+    	</div>
+    	<div *ngIf="photoService.photos.length>6">
+    		<a href={{photoService.photos[6].link}} target="_blank"><img src={{photoService.photos[6].link}} class="photoitem"></a>
+    	</div>
+    </div>
+    <div class="col-sm-4">
+    	<div *ngIf="photoService.photos.length>2">
+    		<a href={{photoService.photos[2].link}} target="_blank"><img src={{photoService.photos[2].link}} class="photoitem"></a>
+    	</div>
+    	<div *ngIf="photoService.photos.length>5">
+    		<a href={{photoService.photos[5].link}} target="_blank"><img src={{photoService.photos[5].link}} class="photoitem"></a>
+    	</div>
+    	<div *ngIf="photoService.photos.length>7">
+    		<a href={{photoService.photos[7].link}} target="_blank"><img src={{photoService.photos[7].link}} class="photoitem"></a>
+    	</div>
+    </div>
+</div>

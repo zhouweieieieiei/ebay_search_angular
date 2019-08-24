@@ -1,0 +1,44 @@
+<div id="detail" *ngIf="detailService.item">  
+  <div id="detailname">{{detailService.item.title[0]}}</div>
+  <div> 
+    <button type="button" class="btn btn-light" (click) = "slidingcontrolService.changevisiblestate(false); detailtabcontrolService.updatetab('product');">
+        < List
+    </button>
+    <button type="button" *ngIf="!wishlistService.searchitem(detailService.item)" class="btn" (click)="wishlistService.additem(detailService.item)" style="float: right;">
+    <i class="material-icons">add_shopping_cart</i>
+    </button>
+    <button type="button" *ngIf="wishlistService.searchitem(detailService.item)" class="btn" (click)="wishlistService.deleteitem(detailService.item)" style="float: right;">
+      <i class="material-icons" style="color: yellow">remove_shopping_cart</i>
+    </button>
+     <!--<img src="http://csci571.com/hw/hw8/Images/facebook.png" width="30px" style="float: right;" (click) = "fbshare(detailService.messages.Item)">-->
+
+    <a href={{fbshare2(detailService.messages.Item)}} target="_blank"><img src="http://csci571.com/hw/hw8/Images/facebook.png" width="30px" style="float: right;"></a> 
+  </div>
+  <div align="right" style="clear: both;">
+    <div>
+  	<button type="button" [ngClass]="detailtabcontrolService.tab == 'product'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('product')">
+        Product
+    </button>
+    <button type="button" [ngClass]="detailtabcontrolService.tab == 'photos'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('photos')">
+      Photos
+    </button>
+    <button type="button" [ngClass]="detailtabcontrolService.tab == 'shipping'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('shipping')">
+      Shipping
+    </button>
+    <button type="button" [ngClass]="detailtabcontrolService.tab == 'seller'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('seller')">
+      Seller
+    </button>
+    <button type="button" id="btn1" [ngClass]="detailtabcontrolService.tab == 'similarproducts'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('similarproducts')">
+      Similar Products
+    </button>
+    <button type="button" id="btn2" [ngClass]="detailtabcontrolService.tab == 'similarproducts'?'selectedtab btn':'unselectedtab btn'" (click) = "detailtabcontrolService.updatetab('similarproducts')">
+      Related
+    </button>
+    </div>
+  </div>
+  <app-infotab *ngIf = "detailtabcontrolService.tab == 'product'"></app-infotab>
+  <app-photostab *ngIf = "detailtabcontrolService.tab == 'photos'"></app-photostab>
+  <app-shippingtab *ngIf = "detailtabcontrolService.tab == 'shipping'"></app-shippingtab>
+  <app-sellertab *ngIf = "detailtabcontrolService.tab == 'seller'"></app-sellertab>
+  <app-similarproductstab *ngIf = "detailtabcontrolService.tab == 'similarproducts'"></app-similarproductstab>
+</div>

@@ -1,0 +1,44 @@
+<div id="norecord" *ngIf="searchService.itemnum==0&&searchService.messages" class="alert alert-warning" role="alert">
+  No Records.
+</div>
+<div *ngIf="searchService.itemnum>0">
+  <div id="buttoncontainer" align="right">
+    <button id = "detailbutton" type="button" class="btn btn-light" [disabled]="!detailService.item" (click) = "slidingcontrolService.changevisiblestate(true)">
+        Detail >
+    </button>
+  </div>
+  <div id="tablecontainer">
+  <table class="table table-striped table-dark">
+  	<tr>
+  		<th>#</th>
+  		<th>Image</th>
+  		<th>Title</th>
+  		<th>Price</th>
+  		<th>Shipping</th>
+  		<th>Zip</th>
+  		<th>Seller</th>
+  		<th>Wish List</th>
+  	</tr>
+  	<tr *ngFor="let item of searchService.messages.findItemsAdvancedResponse[0].searchResult[0].item; index as i" (mouseover)="hovering(item)" (mouseout)="unhovering()" [ngStyle]="{'background-color': item.itemId[0] == hoveringitem ?'#565656':item.itemId[0] == selecteditem?'#868686':''}">
+      <ng-container *ngIf="i+1<=pageService.curpage*10 && i+1>(pageService.curpage-1)*10">
+    		<td>{{i+1}}</td>
+    		<td *ngIf="imagejudge(item)"><a href={{item.galleryURL[0]}} target="_blank"><img src={{item.galleryURL[0]}} style="width: 100px; height: 100px;"></a></td>
+    		<td *ngIf="!imagejudge(item)">N/A</td>
+    		<td><span (click) = "requestdetail(item)" matTooltip={{item.title[0]}} style="color: dodgerblue;">{{titlejudge(item)}}</span></td>
+    		<td>{{pricejudge(item)}}</td>
+    		<td>{{shippingjudge(item)}}</td>
+    		<td>{{zipjudge(item)}}</td>
+    		<td>{{sellerjudge(item)}}</td>
+    		<td>
+    			<button type="button" *ngIf="!wishlistService.searchitem(item)" class="btn btn-light" (click)="wishlistService.additem(item)">
+    				<i class="material-icons">add_shopping_cart</i>
+    			</button>
+          <button type="button" *ngIf="wishlistService.searchitem(item)" class="btn btn-light" (click)="wishlistService.deleteitem(item)">
+            <i class="material-icons" style="color: yellow">remove_shopping_cart</i>
+          </button>
+    		</td>
+      </ng-container>
+  	</tr>
+  </table>
+</div>
+<app-page *ngIf="searchService.itemnum>0"></app-page>

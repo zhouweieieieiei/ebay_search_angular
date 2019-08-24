@@ -1,0 +1,60 @@
+<div id="norecord" *ngIf="similarService.similaritemnum == 0" class="alert alert-warning" role="alert">
+  No Records.
+</div>
+<div *ngIf="similarService.similaritemnum>0">
+	<form>
+		<div class="form-group row">
+			<div class="col-sm-2">
+			    <select class="form-control" name="category1" [(ngModel)] = "ordercategory" (change) = "ordercategorychange()">
+			    	<option value = "Default" selected="selected">Default</option>
+			    	<option value = "Product Name">Product Name</option>
+			    	<option value = "Days Left">Days Left</option>
+			    	<option value = "Price">Price</option>
+			    	<option value = "Shipping Cost">Shipping Cost</option>
+			    </select>
+			</div>
+			<div class="col-sm-2">
+			    <select class="form-control" name="category2" [(ngModel)] = "orderstyle" [disabled] = "ordercategory == 'Default'" (change) = "orderstylechange()">
+			    	<option value = "Ascending" selected="selected">Ascending</option>
+			    	<option value = "Descending">Descending</option>
+			    </select>
+			</div>
+		</div>
+
+		<div>
+			<div *ngFor="let item of similarService.showmessages; index as i">
+				<ng-container *ngIf="i+1<=showitemnum">
+					<div class="row jumbotron bg-dark">
+					<div class="col-sm-2">
+						<img src={{item.imageURL}} height="180px">
+					</div>
+					<div class="inf">
+						<a href={{item.viewItemURL}} target="_blank">
+						<div class="text-info">
+							{{item.title}}
+						</div>
+						</a>
+						<div class="text-success">
+							Price:${{item.buyItNowPrice['__value__']}}
+						</div>
+						<div class="text-warning">
+							Shipping cost:${{item.shippingCost['__value__']}}
+						</div>
+						<div class="text-white">
+							Days Left:{{extractleftdays(item)}}
+						</div>
+					</div>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+		<div *ngIf="similarService.similaritemnum>5" style="text-align: center;">
+			<button type="button" *ngIf="showitemnum == 5" class="btn btn-dark" (click) = "showmoreitems()">
+	      		Show More
+	    	</button>
+	    	<button type="button" *ngIf="showitemnum == 20" class="btn btn-dark" (click) = "showlessitems()">
+	      		Show Less
+	    	</button>
+		</div>
+	</form>
+</div>

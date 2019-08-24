@@ -1,0 +1,27 @@
+.progress-wrapper{
+    position: relative;
+    stroke: 2;
+}
+
+.progress-wrapper .popularitytext{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 100%;
+    z-index: 1;
+}
+
+.field{
+	width: 50%;
+}
+
+.popularitytext{
+	margin-left: 11px; 
+}
+
+#seller{
+    text-align: center;
+    font-size: 20px;
+}
